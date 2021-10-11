@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Head from 'next/head';
-import styled from 'styled-components';
+import {Page} from './index.elements';
 import {TopBar, List} from '../components';
 import GlobalStyle from '../styles/globalStyles';
 
@@ -28,12 +28,3 @@ export default function Home() {
     </>
   )
 }
-
-const Page = styled.div`
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  display: flex;
-`;
