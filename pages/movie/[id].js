@@ -54,6 +54,7 @@ function Movie(){
               <Head>
                 <title>Promobit - {movie.title}</title>
                 <meta name="description" content={movie.overview} />
+                <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
                 <link rel="icon" href="/favicon.ico" />
               </Head>
               <TopBar dark={isDarkMode} toggle={handleToggle} />

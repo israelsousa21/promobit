@@ -31,6 +31,7 @@ function Home(props) {
         <Head>
           <title>Promobit - Filmes</title>
           <meta name="description" content="Os melhores filmes do TMDB" />
+          <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <TopBar dark={isDarkMode} toggle={handleToggle} />
