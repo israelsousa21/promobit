@@ -18,7 +18,7 @@ export const Blurbar = styled.div `
     width: 100%;
     filter: blur(3px);
     -webkit-filter: blur(3px);
-    opacity: 0.5;
+    opacity: 0.9;
     min-height:100px;        
     box-shadow: 0 0 0 5px ${props => props.dark ? "#000" : "#fff"};
     background: ${props => props.dark ? "#000" : "#fff"};
@@ -38,7 +38,7 @@ export const Logo = styled.div `
     flex-direction: column;
     justify-content: center;
     text-align:center;
-    filter: blur(0px);
+    filter: blur(1px);
     -webkit-filter: blur(0px);
     color: ${props => props.dark ? "#fff" : "#000"};
 `;

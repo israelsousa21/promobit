@@ -1,11 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import {Page} from './index.elements';
 import {TopBar, List} from '../components';
 import GlobalStyle from '../styles/globalStyles';
 
-export default function Home() {
+function Home(props) {
   const [isDarkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const darkMode = localStorage.getItem('darkmode');
+    if(darkMode == null) {
+      localStorage.setItem('darkmode', isDarkMode);
+    }else{
+      setDarkMode(darkMode);
+    }
+  }, []);
+
+  useEffect(() => {
+      localStorage.setItem('darkmode', isDarkMode);
+  }, [isDarkMode])
 
   const handleToggle = () => {
     setDarkMode(!isDarkMode);
@@ -13,18 +26,18 @@ export default function Home() {
 
   return (
     <>
-      <GlobalStyle dark={isDarkMode ? true : false} />
-      <Page dark={isDarkMode ? true : false}>
+      <GlobalStyle dark={isDarkMode} />
+      <Page dark={isDarkMode}>
         <Head>
           <title>Promobit - Filmes</title>
           <meta name="description" content="Os melhores filmes do TMDB" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <TopBar dark={isDarkMode ? true : false}
-                toggle={handleToggle}
-        />
-        <List dark={isDarkMode ? true : false} />
+        <TopBar dark={isDarkMode} toggle={handleToggle} />
+        <List dark={isDarkMode} />
       </Page>
     </>
   )
 }
+
+export default Home;
