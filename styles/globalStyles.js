@@ -2,8 +2,8 @@ import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   body{
-    background: url(${'https://www.worldatlas.com/r/w1200/upload/f0/ee/61/theater.jpg'});
-    background-color: ${props => props.dark ? "#000" : "#fff"};
+    background: url(${props => props.bgcover ? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${props.bgcover}` : `https://www.digiseller.ru/preview/727651/p1_2365110_869f10ad.jpg`}) no-repeat ${props => props.dark ? "#000" : "#fff"};
+    background-size: cover;
   }
 
   * {
