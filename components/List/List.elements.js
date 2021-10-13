@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import BGMovies from '../../public/teste.jpg';
 
 export const Container = styled.div`
   position: absolute;
@@ -20,4 +19,9 @@ export const Section = styled.div`
   padding: 20px;
   width: 100%;
   display: flex;
+`;
+
+export const Sentinel = styled.div`
+  width:100%;
+  height:20px;
 `;
