@@ -1,9 +1,10 @@
-import {Box, Title} from '../Cardmovie/Cardmovie.elements';
+import { Box } from '../Cardmovie/Cardmovie.elements';
 
 export default function Cardmovies(props){
     return (
-        <Box dark={props.dark}>
-            <Title>Título</Title>
+        <Box href={`/movie/${props.id}`} alt={props.title} title={props.title}
+            post={props.post} 
+            dark={props.dark}>
         </Box>
     )
 }

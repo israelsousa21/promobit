@@ -1,18 +1,23 @@
 import styled from "styled-components";
 
-export const Box = styled.div`
+export const Box = styled.a`
     display: flex;
     position: relative;
     margin: 5px;
     box-sizing: border-box;
     width: 210px;
-    height: 316px;
+    height: 320px;
     border-radius: 5px;
     box-shadow: 0 0 1em #000;
-    background: url(${'https://www.themoviedb.org/t/p/w220_and_h330_face/lNzCFguC8wEyJWP89ewQYK8d2nJ.jpg'}) ${props => props.dark ? "#000" : "#fff"};
+    background: url(${props => `https://www.themoviedb.org/t/p/w220_and_h330_face${props.post}`}) ${props => props.dark ? "#000" : "#fff"};
     &:hover{
-        width: 220px;
-        height: 326px;
+        transition: 0.2s;
+        z-index:99;        
+        bottom:10px;
+        width:220px;
+        height:330px;
+        box-shadow: 0 0 3em blue;
+        border: 3px solid blue;
         cursor: pointer;
     }
 `;
