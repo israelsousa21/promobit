@@ -11,9 +11,8 @@ import { Page,
          Cover, 
          Title,
          Year,
-         Genres,
-         Overview
-} from './movies.elements';
+         Genres
+} from '../../styles/movies.elements';
 
 function Movie(){
     const [movie, setMovie] = useState({});

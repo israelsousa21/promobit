@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Container, Title, Genresitens, Genreitem } from './GenresList.elements';
 
 function GenresList(props){

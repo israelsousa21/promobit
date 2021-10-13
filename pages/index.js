@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import {Page} from './index.elements';
+import {Page} from '../styles/index.elements';
 import {TopBar, List} from '../components';
 import GlobalStyle from '../styles/globalStyles';
 
