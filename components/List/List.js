@@ -5,10 +5,10 @@ import { GenresList } from "../index";
 import { getMovies, getGenres } from "../../services/index";
 
 function List(props) {
-  //const [filter, setFilter] = useState([0, 'ALL']);
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [filterGerens, setFilterGenres] = useState([0]);
 
   async function loadMovies() {
     const freshMovies = await getMovies(currentPage);
@@ -37,28 +37,22 @@ function List(props) {
     return () => intersectionObserver.disconnect();
   }, []);
 
-  // useEffect(() => {
-
-  //   }, []);
-
-  // const filterMovies = (getMovies) => {
-  //     if (filter[0] === 0) return movies;
-  //     return movies.filter((m) => {
-  //       return m.genre_ids && m.genre_ids.includes(filter[0]);
-  //     });
-  //   };
-
   function filterMovies(movies) {
-    if (filter[0] === 0) return movies;
+    if (filterGerens[0] === 0) return movies;
     return movies.filter((m) => {
-      return m.genre_ids && m.genre_ids.includes(filter[0]);
+      return m.genre_ids && m.genre_ids.includes(filterGerens[0]);
     });
+  }
+
+  function getGenresFilter(filter){
+    setFilterGenres(filter)
+    console.log(filter)
   }
 
   return (
     <Container>
-      <GenresList dark={props.dark} genres={genres} />
-      {movies.map((movie) => (
+      <GenresList dark={props.dark} genres={genres} genresFilter={getGenresFilter}/>
+      {filterMovies(movies).map((movie) => (
         <Cardmovies
           key={movie.id}
           id={movie.id}

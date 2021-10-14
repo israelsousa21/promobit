@@ -50,6 +50,7 @@ export const Genreitem = styled.a`
  text-transform: uppercase;
  box-shadow: 0 0 1em ${props => props.dark ? "#fff" : "#000"};
  background: ${props => props.dark ? "#000" : "#fff"};
+ background: ${props => props.selected ? "blue" : "#000"};
  border-radius: 5px;
  margin: 5px;
  &:hover{

@@ -39,7 +39,6 @@ export const Leftcol = styled.div`
 export const Rightcol = styled.div`
   flex: 3;
   height: auto;
-  
 `;
 
 export const Cover = styled.img`
