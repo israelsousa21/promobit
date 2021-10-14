@@ -1,109 +1,120 @@
-import { useState, useEffect } from 'react';
-import GlobalStyle from '../../styles/globalStyles';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
-import { TopBar } from '../../components';
-import { getMovie } from '../../services/index';
-import { Page, 
-         Section, 
-         Content,
-         Details,
-         Cover, 
-         Title,
-         Year,
-         Genres
-} from '../../styles/movies.elements';
+import { useState, useEffect } from "react";
+import GlobalStyle from "../../styles/globalStyles";
+import { useRouter } from "next/router";
+import Head from "next/head";
+import { TopBar } from "../../components";
+import { getMovie } from "../../services/index";
+import {
+  Page,
+  Section,
+  Content,
+  Cover,
+  Title,
+  Year,
+  Genres,
+  Leftcol,
+  Rightcol,
+  OverviewTitle,
+  OverviewText,
+} from "../../styles/movies.elements";
 
-function Movie(){
-    const [movie, setMovie] = useState({});
-    const [idMovie, setIdMovie] = useState(null);
-    const [isDarkMode, setDarkMode] = useState(false);
-    const router = useRouter();
-    const { id } = router.query;
-    
-    useEffect(() => {
-      if(id){
-        setIdMovie(id);
-      }
-    }, [id]);
+function Movie() {
+  const [movie, setMovie] = useState({});
+  const [idMovie, setIdMovie] = useState(null);
+  const [isDarkMode, setDarkMode] = useState(false);
+  const router = useRouter();
+  const { id } = router.query;
 
-    async function loadMovie(id){
-      const dataMovie = await getMovie(idMovie);
-      setMovie(dataMovie);
+  useEffect(() => {
+    if (id) {
+      setIdMovie(id);
     }
+  }, [id]);
 
-    function showGenres(genres){
-      if(genres != null){
-        return(
-          genres.map((genre) => (
-            <Genres key={genre.id} dark={isDarkMode}>{genre.name}</Genres>
-          ))
-        )
-      }else{
-        return('')
-      }
-      
+  async function loadMovie(id) {
+    const dataMovie = await getMovie(idMovie);
+    setMovie(dataMovie);
+  }
+
+  function showGenres(genres) {
+    if (genres != null) {
+      return genres.map((genre) => (
+        <Genres key={genre.id} dark={isDarkMode}>
+          {genre.name}
+        </Genres>
+      ));
+    } else {
+      return "";
     }
+  }
 
-    function showMovie(movie){
-      if(movie != null){
-        return (
-          <>
+  function showMovie(movie) {
+    if (movie != null) {
+      return (
+        <>
           <GlobalStyle dark={isDarkMode} bgcover={movie.poster_path} />
+            <Head>
+              <title>Promobit - {movie.title}</title>
+              <meta name="description" content={movie.overview} />
+              <meta
+                httpEquiv="Content-Security-Policy"
+                content="upgrade-insecure-requests"
+              ></meta>
+              <link rel="icon" href="/favicon.ico" />
+            </Head>
             <Page dark={isDarkMode}>
-              <Head>
-                <title>Promobit - {movie.title}</title>
-                <meta name="description" content={movie.overview} />
-                <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
-                <link rel="icon" href="/favicon.ico" />
-              </Head>
-              <TopBar dark={isDarkMode} toggle={handleToggle} />
+            <TopBar dark={isDarkMode} toggle={handleToggle} />
               <Section dark={isDarkMode} />
               <Content>
-                <Cover src={`https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}`} dark={isDarkMode} />
-                <Details>
-                  <Title dark={isDarkMode}>{movie.title}
-                    <Year> ({movie.release_date ? movie.release_date.substr(0,4) : ''})</Year>
+                <Leftcol>
+                  <Cover
+                    src={`https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}`}
+                    dark={isDarkMode}
+                  />
+                </Leftcol>
+                <Rightcol>
+                <Title dark={isDarkMode}>
+                    {movie.title}
+                    <Year>
+                      ({movie.release_date ? movie.release_date.substr(0, 4) : ""})
+                    </Year>
                   </Title>
-                  {
-                    showGenres(movie.genres)
-                  }
-                </Details>
+                  {showGenres(movie.genres)}
+                  <OverviewTitle dark={isDarkMode}>Overview</OverviewTitle>
+                  <OverviewText dark={isDarkMode}>{movie.overview}</OverviewText>
+                </Rightcol>
+                
               </Content>
             </Page>
-            </>
-        )
+        </>
+      );
+    } else {
+      return <h1>Error 404!</h1>;
+    }
+  }
 
-      }else{
-
-        return(
-          <h1>Error 404!</h1>
-        )
-
-      }
+  useEffect(() => {
+    if (idMovie != null) {
+      loadMovie();
     }
 
-    useEffect(() => {
-      if(idMovie != null){ loadMovie(); }
-      
-      const darkMode = localStorage.getItem('darkmode');
-      if(darkMode == null) {
-        localStorage.setItem('darkmode', isDarkMode);
-      }else{
-        setDarkMode(darkMode);
-      }
-    }, [idMovie]);
-  
-    useEffect(() => {
-        localStorage.setItem('darkmode', isDarkMode);
-    }, [isDarkMode])
-  
-    const handleToggle = () => {
-      setDarkMode(!isDarkMode);
+    const darkMode = localStorage.getItem("darkmode");
+    if (darkMode == null) {
+      localStorage.setItem("darkmode", isDarkMode);
+    } else {
+      setDarkMode(darkMode);
     }
+  }, [idMovie]);
 
- return( showMovie(movie) )
+  useEffect(() => {
+    localStorage.setItem("darkmode", isDarkMode);
+  }, [isDarkMode]);
 
+  const handleToggle = () => {
+    setDarkMode(!isDarkMode);
+  };
+
+  return showMovie(movie);
 }
 
 export default Movie;
