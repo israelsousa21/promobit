@@ -6,7 +6,6 @@ import { getMovies } from "../../services/index";
 
 function List(props) {
   const [movies, setMovies] = useState([]);
-  //const [genres, setGenres] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [filterGerens, setFilterGenres] = useState([0]);
 
@@ -15,21 +14,9 @@ function List(props) {
     setMovies((prevMovies) => [...prevMovies, ...freshMovies]);
   }
 
-  // async function loadGenres() {
-  //   const allGenres = await getGenres();
-  //   console.log('All Genres: '+allGenres);
-  //   setGenres(allGenres);
-  //   //console.log('Genres: '+genres)
-  //   return allGenres;
-  // }
-
   useEffect(() => {
     loadMovies(currentPage);
   }, [currentPage, filterGerens]);
-
-  // useEffect(() => {
-  //   loadGenres(filterGerens);
-  // }, [])
 
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver((entries) => {
@@ -50,7 +37,6 @@ function List(props) {
 
   function getGenresFilter(filter){
     setFilterGenres(filter)
-    console.log(filter)
   }
 
   return (

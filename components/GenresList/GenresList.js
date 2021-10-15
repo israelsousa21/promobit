@@ -9,7 +9,7 @@ import { getGenres } from "../../services/index";
 
 function GenresList(props) {
   const [selectedGenres, setselectedGenres] = useState([]);
-  const [update, setUpdate] = useState(null);
+  //const [update, setUpdate] = useState(null);
   const [renderGenres, setRenderGenres] = useState([]);
 
   const loadGenres = useCallback(async () => {
@@ -44,7 +44,7 @@ function GenresList(props) {
       setselectedGenres((currentGenres) => [...currentGenres, id]);
       //console.log('Caiu aqui')
     }
-    setUpdate(Math.random());
+    //setUpdate(Math.random());
     props.genresFilter(selectedGenres);
   }
 

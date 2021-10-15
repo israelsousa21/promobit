@@ -41,15 +41,15 @@ export const Genreitem = styled.a`
  justify-content: center;
  align-items: center;
  box-sizing: border-box;
- color: ${props => props.dark ? "#fff" : "#000"};
  font-size: 12px;
  font-weight: bold;
  min-width: 100px;
+ color: ${props => props.dark || props.selected ? "#fff" : "#000"};
  padding: 8px;
  text-decoration: none;
  text-transform: uppercase;
  box-shadow: 0 0 1em ${props => props.dark ? "#fff" : "#000"};
- background: ${props => props.dark ? "#000" : "#fff"};
+ background: ${props => props.dark ? "#fff" : "#000"};
  background: ${props => props.selected ? "blue" : "#000"};
  border-radius: 5px;
  margin: 5px;
