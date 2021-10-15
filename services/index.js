@@ -21,6 +21,7 @@ export const getGenres = async () => {
   )
     .then((response) => response.json())
     .then(function (data) {
+      console.log('Data Genress: '+data.genres);
       return data.genres;
     })
     .catch((error) => console.log("Error Genres", error));

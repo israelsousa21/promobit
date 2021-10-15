@@ -2,37 +2,41 @@ import { Container, Sentinel } from "./List.elements";
 import Cardmovies from "../Cardmovie/Cardmovie";
 import { useState, useEffect } from "react";
 import { GenresList } from "../index";
-import { getMovies, getGenres } from "../../services/index";
+import { getMovies } from "../../services/index";
 
 function List(props) {
   const [movies, setMovies] = useState([]);
-  const [genres, setGenres] = useState([]);
+  //const [genres, setGenres] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [filterGerens, setFilterGenres] = useState([0]);
 
-  async function loadMovies() {
+  async function loadMovies(currentPage) {
     const freshMovies = await getMovies(currentPage);
     setMovies((prevMovies) => [...prevMovies, ...freshMovies]);
   }
 
-  async function loadGenres() {
-    const allGenres = await getGenres();
-    setGenres(allGenres);
-  }
+  // async function loadGenres() {
+  //   const allGenres = await getGenres();
+  //   console.log('All Genres: '+allGenres);
+  //   setGenres(allGenres);
+  //   //console.log('Genres: '+genres)
+  //   return allGenres;
+  // }
 
   useEffect(() => {
-    loadMovies();
-  }, [currentPage]);
+    loadMovies(currentPage);
+  }, [currentPage, filterGerens]);
+
+  // useEffect(() => {
+  //   loadGenres(filterGerens);
+  // }, [])
 
   useEffect(() => {
-    loadGenres();
-
     const intersectionObserver = new IntersectionObserver((entries) => {
       if (entries.some((entry) => entry.isIntersecting)) {
         setCurrentPage((currentValue) => currentValue + 1);
       }
     });
-
     intersectionObserver.observe(document.querySelector("#sentinel"));
     return () => intersectionObserver.disconnect();
   }, []);
@@ -51,7 +55,12 @@ function List(props) {
 
   return (
     <Container>
-      <GenresList dark={props.dark} genres={genres} genresFilter={getGenresFilter}/>
+      <GenresList 
+        dark={props.dark} 
+        //datagenres={genres} 
+        genresFilter={getGenresFilter}
+      />
+
       {filterMovies(movies).map((movie) => (
         <Cardmovies
           key={movie.id}
