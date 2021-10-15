@@ -13,7 +13,7 @@ This is the link to see in production [LIVE SITE](https://promobit.israelsousa.c
 
 First, change de API Key on .env:
 
-Creating API Key: [TMDB](https://developers.themoviedb.org/3/getting-started/introduction)
+Creating API Key: [TMDB API](https://developers.themoviedb.org/3/getting-started/introduction)
 
 Second, run the development server:
 
