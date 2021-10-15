@@ -5,9 +5,9 @@ This a is a Movie Wiki web app built on React and NextJS framework, consuming TM
 
 Tags: nextjs react nodejs fetch vercel tmdb-api
 
-react-next-movie-app
-
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/israelsousa21/promobit).
+
+This is the link to see in production [LIVE SITE](https://promobit.israelsousa.com.br/)
 
 ## Getting Started
 
@@ -24,7 +24,6 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 
 ## Learn More
 
