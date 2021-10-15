@@ -44,12 +44,11 @@ export const Genreitem = styled.a`
  font-size: 12px;
  font-weight: bold;
  min-width: 100px;
- color: ${props => props.dark || props.selected ? "#fff" : "#000"};
+ color: ${props => props.dark || props.selected ? "#fff" : "#fff"};
  padding: 8px;
  text-decoration: none;
  text-transform: uppercase;
  box-shadow: 0 0 1em ${props => props.dark ? "#fff" : "#000"};
- background: ${props => props.dark ? "#fff" : "#000"};
  background: ${props => props.selected ? "blue" : "#000"};
  border-radius: 5px;
  margin: 5px;
